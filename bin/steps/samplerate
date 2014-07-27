@@ -14,7 +14,7 @@ source $BIN_DIR/utils
 
 # If Scikit-learn exists within requirements.txt then use binaries.
 if (grep -iq -e "^\s*scikits.samplerate" requirements.txt) then
-  TARGET_SAMPLERATE_VERSION=$(cat requirements.txt | grep scikits.samplerate | tr -d " " | cut -c 13-)
+  TARGET_SAMPLERATE_VERSION=$(cat requirements.txt | grep scikits.samplerate | tr -d " " | cut -c 19-)
   puts-step "Noticed scikits.Samplerate. Installing..."
   cd .heroku
 
