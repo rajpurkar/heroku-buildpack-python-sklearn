@@ -13,15 +13,15 @@
 source $BIN_DIR/utils
 
 # If Scikit-learn exists within requirements.txt then use binaries.
-if (grep -iq -e "^\s*scikits-samplerate" requirements.txt) then
-  TARGET_SAMPLERATE_VERSION=$(cat requirements.txt | grep scikits-samplerate | tr -d " " | cut -c 13-)
-  puts-step "Noticed scikits-samplerate. Installing..."
+if (grep -iq -e "^\s*scikits.samplerate" requirements.txt) then
+  TARGET_SAMPLERATE_VERSION=$(cat requirements.txt | grep scikits.samplerate | tr -d " " | cut -c 13-)
+  puts-step "Noticed scikits.Samplerate. Installing..."
   cd .heroku
 
   ## check whether this has happened already
 
-  if [ -d "python/lib/python2.7/site-packages/scikits-samplerate*" ]; then
-    puts-step "Using cached scikits-samplerate."
+  if [ -d "python/lib/python2.7/site-packages/scikits.samplerate*" ]; then
+    puts-step "Using cached scikits.samplerate."
   else
     puts-step "Setting environment vars..."
     export BLAS=$(pwd)/vendor/lib/atlas-base/atlas/libblas.a
@@ -30,8 +30,8 @@ if (grep -iq -e "^\s*scikits-samplerate" requirements.txt) then
     export LIBRARY_PATH=$(pwd)/vendor/lib:$(pwd)/lib/atlas-base:$(pwd)/lib/atlas-base/atlas
     export LD_LIBRARY_PATH=$(pwd)/vendor/lib:$(pwd)/vendor/lib/atlas-base:$(pwd)/vendor/lib/atlas-base/atlas
 
-    puts-step "Installing scikits-samplerate$TARGET_SAMPLERATE_VERSION via pip"
-    pip install --use-mirrors scikits-samplerate$TARGET_SAMPLERATE_VERSION
+    puts-step "Installing scikits.samplerate$TARGET_SAMPLERATE_VERSION via pip"
+    pip install --use-mirrors scikits.samplerate$TARGET_SAMPLERATE_VERSION
   fi
 
   cd ..
